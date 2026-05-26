@@ -39,9 +39,10 @@ models/*.joblib
 !reports/figures/*.png
 !reports/figures/*.jpg
 
-# OS
+# OS & office app lock files
 .DS_Store
 Thumbs.db
+~$*
 
 # DVC
 /data/raw/.gitignore

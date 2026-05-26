@@ -1039,6 +1039,97 @@ hf auth login
         ],
     )
 
+    add_heading(doc, "5.11 Source Code Repository (GitHub)", level=2)
+    add_justified(
+        doc,
+        "Seluruh source code, model, konfigurasi pipeline, laporan, dan "
+        "dokumentasi proyek di-publish sebagai repositori open-source di "
+        "GitHub untuk transparansi, reproducibility, dan kemudahan akses "
+        "bagi reviewer:",
+    )
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run("https://github.com/rafafifuwae/rfm-customer-segmentation")
+    r.bold = True
+    r.font.size = Pt(12)
+    r.font.color.rgb = RGBColor(0x1F, 0x3A, 0x5F)
+
+    add_para(doc, "Isi Repository:", bold=True)
+    add_bullets(
+        doc,
+        [
+            "Pipeline notebook lengkap (data collection, EDA, preprocessing, "
+            "modeling) dengan output cell tersimpan untuk dibaca langsung "
+            "di GitHub.",
+            "Source code aplikasi serving (FastAPI + Streamlit + predictor "
+            "wrapper) yang siap di-clone dan dijalankan.",
+            "Model K-Means terlatih (models/kmeans_rfm.pkl, 374 KB) beserta "
+            "serving artifacts (winsorize bounds + segment mapping).",
+            "Docker config (Dockerfile, start.sh) untuk deployment otomatis "
+            "ke Hugging Face Spaces atau platform container lain.",
+            "27 file gambar visualisasi (21 figure modeling + 6 screenshot "
+            "deployment) sebagai bukti hasil dan dokumentasi visual.",
+            "Laporan tugas dalam format DOCX yang siap di-review.",
+            "DVC pipeline configuration (dvc.yaml, params.yaml) untuk "
+            "reproducibility eksperimen.",
+        ],
+    )
+
+    add_para(doc, "Tidak Disertakan (sesuai .gitignore):", bold=True)
+    add_bullets(
+        doc,
+        [
+            "Dataset raw Olist (~120 MB) — terlalu besar untuk Git biasa. "
+            "Dataset dapat di-download dari Kaggle (referensi link di "
+            "README) atau di-track via DVC remote.",
+            "Virtual environment (.venv) dan dependency yang terinstall — "
+            "dapat di-restore via pip install -r requirements.txt.",
+            "File cache dan temporary lain (__pycache__, .ipynb_checkpoints, "
+            ".dvc/cache).",
+        ],
+    )
+
+    add_para(doc, "Cara Clone & Jalankan:", bold=True)
+    add_code(doc, """# 1. Clone repository
+git clone https://github.com/rafafifuwae/rfm-customer-segmentation.git
+cd rfm-customer-segmentation
+
+# 2. Setup virtual environment
+python -m venv .venv
+source .venv/bin/activate          # Linux/Mac
+# .venv\\Scripts\\activate          # Windows
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. (Opsional) Download dataset Olist dari Kaggle
+#    https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+#    Ekstrak ke folder data/raw/
+#    (Skip langkah ini kalau hanya ingin menjalankan inference,
+#     karena model & serving artifacts sudah ter-include)
+
+# 5. Jalankan aplikasi
+./scripts/run_app.sh
+#    UI       : http://localhost:8501
+#    API docs : http://localhost:8000/docs""")
+
+    add_para(doc, "Manfaat Publikasi di GitHub:", bold=True)
+    add_bullets(
+        doc,
+        [
+            "Transparansi penelitian — reviewer/dosen dapat memeriksa "
+            "setiap baris kode dan keputusan teknis langsung di browser.",
+            "Reproducibility — siapa pun dapat menjalankan ulang pipeline "
+            "yang sama dengan random_state yang fixed.",
+            "Portofolio profesional — repository menjadi bukti karya nyata "
+            "dengan dokumentasi lengkap (commit history, README, kode).",
+            "Versioning — perubahan kode tercatat lengkap melalui commit "
+            "history, memudahkan tracking eksperimen.",
+            "Kolaborasi — siapa pun dapat fork, contribute, atau "
+            "mengadaptasi project untuk dataset lain.",
+        ],
+    )
+
     add_heading(doc, "Kesimpulan", level=1)
     add_justified(
         doc,
@@ -1063,6 +1154,16 @@ hf auth login
         "yang siap diintegrasikan dengan sistem lain. Strategi multi-layer "
         "ini memastikan transisi mulus dari development hingga production "
         "tanpa perubahan kode aplikasi.",
+    )
+    add_justified(
+        doc,
+        "Sebagai bentuk transparansi dan untuk mendukung reproducibility, "
+        "seluruh kode, model, konfigurasi, dan laporan dipublikasikan "
+        "sebagai repository open-source di GitHub "
+        "(https://github.com/rafafifuwae/rfm-customer-segmentation) "
+        "sehingga reviewer maupun pihak ketiga dapat memeriksa, "
+        "menjalankan ulang, atau mengadaptasi sistem ini untuk dataset "
+        "lain.",
     )
 
     return doc
