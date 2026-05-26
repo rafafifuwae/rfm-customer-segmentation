@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "reports" / "Laporan_Proyek_Data_Mining.docx"
 FIG_DIR = ROOT / "reports" / "figures"
 DEPLOY_FIG_DIR = FIG_DIR / "deployment"
+DIAGRAMS_DIR = FIG_DIR / "diagrams"
 
 
 # ---------- helpers ----------
@@ -343,7 +344,11 @@ def build() -> Document:
         "diagram alur penelitian yang dilakukan:",
     )
 
-    diagram = """┌─────────────────────────────────────────────────────────┐
+    add_image(doc, DIAGRAMS_DIR / "01_research_flow.png", width_cm=14,
+              caption="Gambar 3.1 — Diagram alur penelitian data mining "
+                      "(adaptasi CRISP-DM untuk segmentasi pelanggan)")
+
+    _unused_diagram_research = """┌─────────────────────────────────────────────────────────┐
 │            ALUR PENELITIAN DATA MINING                  │
 │   (Adaptasi CRISP-DM untuk Segmentasi Pelanggan)        │
 └─────────────────────────────────────────────────────────┘
@@ -414,7 +419,6 @@ def build() -> Document:
       │    (reproducible)        │
       └──────────────────────────┘
 """
-    add_code(doc, diagram)
 
     add_heading(doc, "Penjelasan Tiap Fase", level=2)
 
@@ -705,7 +709,13 @@ joblib.dump({"scaler": scaler, "kmeans": kmeans,
     )
 
     add_heading(doc, "5.1 Arsitektur Deployment", level=2)
-    arsitektur = """┌─────────────────────────────────────────────────────────┐
+
+    add_image(doc, DIAGRAMS_DIR / "02_deployment_architecture.png", width_cm=14,
+              caption="Gambar 5.0 — Arsitektur deployment: FastAPI (backend) + "
+                      "Streamlit (frontend) + RFMPredictor (transform pipeline) "
+                      "dengan model & serving artifacts")
+
+    _unused_arsitektur = """┌─────────────────────────────────────────────────────────┐
 │              ARSITEKTUR DEPLOYMENT                       │
 └─────────────────────────────────────────────────────────┘
 
@@ -739,7 +749,6 @@ joblib.dump({"scaler": scaler, "kmeans": kmeans,
                                      │  → Segment + Strategi│
                                      └─────────────────────┘
 """
-    add_code(doc, arsitektur)
 
     add_heading(doc, "5.2 Komponen Deployment", level=2)
     add_table(
@@ -908,7 +917,12 @@ $ curl -X POST http://localhost:8000/predict \\
         "perubahan kode aplikasi.",
     )
 
-    multilayer = """┌─────────────────────────────────────────────────────────────┐
+    add_image(doc, DIAGRAMS_DIR / "03_deployment_layers.png", width_cm=14,
+              caption="Gambar 5.7 — Strategi deployment multi-layer: lokal "
+                      "(development) → Cloudflare Tunnel (demo publik) → "
+                      "Docker + Hugging Face Spaces (hosting permanen)")
+
+    _unused_multilayer = """┌─────────────────────────────────────────────────────────────┐
 │            STRATEGI DEPLOYMENT MULTI-LAYER                  │
 └─────────────────────────────────────────────────────────────┘
 
@@ -942,7 +956,6 @@ $ curl -X POST http://localhost:8000/predict \\
   │  - Auto-rebuild saat code di-push         │
   └───────────────────────────────────────────┘
 """
-    add_code(doc, multilayer)
 
     add_para(doc, "Layer 1 — Lokal Development:", bold=True)
     add_justified(
