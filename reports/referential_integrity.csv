@@ -1,0 +1,7 @@
+child,parent,child_unique,parent_unique,matched,coverage_%
+customer_id,customer_id,99441,99441,99441,100.0
+order_id,order_id,98666,99441,98666,100.0
+order_id,order_id,99440,99441,99440,100.0
+order_id,order_id,98673,99441,98673,100.0
+product_id,product_id,32951,32951,32951,100.0
+seller_id,seller_id,3095,3095,3095,100.0

@@ -1,0 +1,10 @@
+{
+  "collected_at": "2026-04-27T15:49:25",
+  "source": "Kaggle - Brazilian E-Commerce Public Dataset by Olist",
+  "license": "CC BY-NC-SA 4.0",
+  "period_start": "2016-09-04 21:15:19",
+  "period_end": "2018-10-17 17:30:18",
+  "n_tables": 9,
+  "total_rows": 1556417,
+  "total_size_MB": 120.35
+}

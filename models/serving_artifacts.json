@@ -1,0 +1,116 @@
+{
+  "winsorize_bounds": {
+    "Recency": {
+      "lower": 1.0,
+      "upper": 575.0
+    },
+    "Frequency": {
+      "lower": 1.0,
+      "upper": 2.0
+    },
+    "Monetary": {
+      "lower": 9.59,
+      "upper": 1097.0636000000004
+    }
+  },
+  "use_log_transform": {
+    "monetary": true,
+    "frequency": true
+  },
+  "segment_map": {
+    "0": "Loyal Customers",
+    "1": "Hibernating / Lost",
+    "2": "At Risk",
+    "3": "Champions"
+  },
+  "cluster_profile": {
+    "0": {
+      "n_customers": 35247,
+      "Recency_mean": 147.22,
+      "Frequency_mean": 1.0,
+      "Monetary_mean": 68.52,
+      "Monetary_total": 2415239.94,
+      "pct_customers": 37.76,
+      "Segment": "Loyal Customers",
+      "Cluster": 0
+    },
+    "1": {
+      "n_customers": 27153,
+      "Recency_mean": 424.6,
+      "Frequency_mean": 1.0,
+      "Monetary_mean": 120.24,
+      "Monetary_total": 3264871.65,
+      "pct_customers": 29.09,
+      "Segment": "Hibernating / Lost",
+      "Cluster": 1
+    },
+    "2": {
+      "n_customers": 2801,
+      "Recency_mean": 220.29,
+      "Frequency_mean": 2.11,
+      "Monetary_mean": 308.59,
+      "Monetary_total": 864357.21,
+      "pct_customers": 3.0,
+      "Segment": "At Risk",
+      "Cluster": 2
+    },
+    "3": {
+      "n_customers": 28156,
+      "Recency_mean": 173.24,
+      "Frequency_mean": 1.0,
+      "Monetary_mean": 315.31,
+      "Monetary_total": 8877992.97,
+      "pct_customers": 30.16,
+      "Segment": "Champions",
+      "Cluster": 3
+    }
+  },
+  "segment_strategy": {
+    "Champions": {
+      "deskripsi": "Pelanggan paling bernilai: transaksi terbaru, sering, dan bernilai tinggi.",
+      "strategi": [
+        "Program loyalitas premium / VIP",
+        "Akses awal ke produk baru",
+        "Personalized thank-you & referral incentive"
+      ]
+    },
+    "Loyal Customers": {
+      "deskripsi": "Sering berbelanja, masih aktif, nilai transaksi sedang.",
+      "strategi": [
+        "Upsell ke produk premium",
+        "Bundle / cross-sell kategori terkait",
+        "Program poin reward"
+      ]
+    },
+    "Potential Loyalists": {
+      "deskripsi": "Transaksi terbaru tapi frekuensi/nilai belum tinggi.",
+      "strategi": [
+        "Email onboarding & rekomendasi produk",
+        "Diskon untuk pembelian kedua",
+        "Edukasi kategori produk"
+      ]
+    },
+    "At Risk": {
+      "deskripsi": "Dulu bernilai tinggi tapi sudah lama tidak transaksi.",
+      "strategi": [
+        "Win-back campaign dengan diskon agresif",
+        "Survei untuk tahu alasan churn",
+        "Personalized re-engagement email"
+      ]
+    },
+    "Hibernating / Lost": {
+      "deskripsi": "Sudah lama tidak aktif dan nilainya rendah.",
+      "strategi": [
+        "Kampanye reaktivasi minimal-cost (email/push)",
+        "Pertimbangkan deprioritisasi akuisisi ulang",
+        "Gunakan sebagai look-alike negative signal"
+      ]
+    }
+  },
+  "feature_cols": [
+    "Recency_w",
+    "Frequency_log",
+    "Monetary_log"
+  ],
+  "n_training_samples": 93357
+}

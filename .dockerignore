@@ -1,0 +1,45 @@
+# Data raw & intermediate — TIDAK dibutuhkan untuk serving (model & artifacts cukup).
+data/raw/
+data/interim/
+data/processed/
+.dvc/
+*.dvc
+
+# Notebooks tidak dibutuhkan di production
+notebooks/
+
+# Virtual env & cache
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Reports & laporan (tidak perlu di runtime container)
+reports/
+docs_dvc.md
+Laporan_Proyek_Data_Mining.docx
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Scripts development (yang dibutuhkan saat build sudah di-COPY explisit di Dockerfile)
+scripts/
+
+# Dockerfile itself
+Dockerfile
+.dockerignore
+README.md

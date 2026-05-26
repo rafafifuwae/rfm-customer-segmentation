@@ -1,0 +1,37 @@
+# Pipeline DVC untuk reproducible workflow.
+# Jalankan dengan: `dvc repro`
+#
+# Setiap stage di-eksekusi otomatis ketika dependensinya berubah.
+
+stages:
+
+  preprocess:
+    cmd: jupyter nbconvert --to notebook --execute --inplace notebooks/03_data_preprocessing.ipynb
+    deps:
+      - data/raw/olist_orders_dataset.csv
+      - data/raw/olist_customers_dataset.csv
+      - data/raw/olist_order_payments_dataset.csv
+      - notebooks/03_data_preprocessing.ipynb
+      - src/data_loader.py
+    params:
+      - preprocessing
+      - rfm
+    outs:
+      - data/processed/rfm_table.csv
+      - data/interim/orders_clean.csv
+
+  modeling:
+    cmd: jupyter nbconvert --to notebook --execute --inplace notebooks/04_rfm_kmeans_modeling.ipynb
+    deps:
+      - data/processed/rfm_table.csv
+      - notebooks/04_rfm_kmeans_modeling.ipynb
+    params:
+      - kmeans
+      - random_state
+      - rfm.features
+    outs:
+      - data/processed/rfm_segmented.csv
+      - models/kmeans_rfm.pkl
+    metrics:
+      - models/kmeans_metrics.json:
+          cache: false

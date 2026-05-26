@@ -1,0 +1,12 @@
+{
+  "k": 4,
+  "inertia": 79016.68191780744,
+  "silhouette": 0.37238786056812095,
+  "davies_bouldin": 0.76335405775903,
+  "n_samples": 93357,
+  "features": [
+    "Recency_w",
+    "Frequency_log",
+    "Monetary_log"
+  ]
+}
